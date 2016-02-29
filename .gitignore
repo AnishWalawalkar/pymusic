@@ -1,1 +1,10 @@
+# Mac OS
+.DS_Store
 .mp3
+
+# Python
+*.pyc
+*.pyo
+dist
+slacker.egg-info
+.tox
