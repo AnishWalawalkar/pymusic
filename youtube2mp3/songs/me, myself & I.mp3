@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Your MP3 Is Ready</title>
+	<meta name="description" content="Download and alternatively edit your YouTube video before saving the MP3 on your device." />
+	<meta name="keywords" content="edit, download, convert, youtube, mp3" />
+	<meta name="author" content="YouTube In MP3" />
+	<meta name="distribution" content="global" />
+	<meta name="language" content="en" />
+	
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.2.3">
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic|Roboto' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">	
+	
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="/js/en.js"></script> -->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body class="home">
+
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+
+	<header>
+	<p><a href="/"><img src="/images/icon.png" class="verticalAlign" alt="YouTube In MP3 Icon"> <span class="logoText">YouTubeInMP3.com</span></a></p>
+	<nav>
+		<ul>
+			<li><a><i class="fa fa-bars fa-2x verticalAlign"></i> Menu</a>
+				<ul>
+					<li><a href="/blog/">Blog</a></li>
+					<li><a href="/faq/">FAQ</a></li>
+					<li><a href="/tos/">Terms of Service</a></li>
+					<li><a href="/privacy/">Privacy Policy</a></li>
+				</ul>
+			</li>
+			<li><a href="/api/"><i class="fa fa-cog fa-2x verticalAlign"></i> API</a></li>
+			<li><a href="/"><i class="fa fa-home fa-2x verticalAlign"></i> Home</a></li>
+
+			
+					</ul>
+	</nav>
+</header>	
+		<div id="contain-160" class="ad ad-160 loader"></div>
+		
+	<div class="link-popup" id="linkpopup">
+	
+		<div class="popup">
+	
+			<h2>Link to this MP3</h2>
+		
+			<p><i class="fa fa-link fa-2x verticalAlign"></i> Direct Link:</p>
+			<code>http://www.youtubeinmp3.com/download/?video=https://www.youtube.com/watch?v=bSfpSOBD30U</code>
+			
+			
+			<p><i class="fa fa-comment fa-2x verticalAlign"></i> Forum:</p>
+			<code>[url=http://www.youtubeinmp3.com/download/?video=https://www.youtube.com/watch?v=bSfpSOBD30U]Download MP3 - G-Eazy x Bebe Rexha - Me, Myself & I[/url]</code>
+			
+		
+			<p><i class="fa fa-code fa-2x verticalAlign"></i> HTML:</p>
+			<code>&lt;a href="http://www.youtubeinmp3.com/download/?video=https://www.youtube.com/watch?v=bSfpSOBD30U"&gt;Download MP3 - G-Eazy x Bebe Rexha - Me, Myself & I&lt;/a&gt;</code>
+			
+			<a onclick="toggle_visibility('linkpopup');" class="close">&times;</a>
+		
+		</div>
+	
+	</div>
+
+	<div class="link-popup" id="editShow">
+	
+		<div class="popup">
+		
+			<div class="paddingBottomOptions">
+			
+				<h2><i class="fa fa-scissors"></i> Cut MP3</h2>
+				
+				<input placeholder="Cut From" class="cutMP3Slider" type="text" id="slider-margin-value-min" /> - 
+				<input placeholder="Cut To" class="cutMP3Slider" type="text" id="slider-margin-value-max" /><br />
+			
+			</div>
+			
+			<div class="paddingBottomOptions">
+			
+				<h2><i class="fa fa-eye"></i> Show video editor</h2>
+				<div class="checkBoxDiv">
+				
+					Display Video Editor: <input class="checkBoxRight" type="checkbox" id="displayEditor"><br />
+					Always display Video Editor: <input class="checkBoxRight" type="checkbox" id="permanentDisplay">
+				
+				</div>
+			
+			</div>
+			
+			<div class="paddingBottomOptions">
+				
+				<h2><i class="fa fa-tag"></i> ID3 Tags</h2>
+				<div class="checkBoxDiv">
+				
+					Identify ID3 Tags Automatically: <input checked="checked" disabled class="checkBoxRight" type="checkbox" id="autoID3">
+				
+				</div>
+				
+			</div>
+			
+			<h2><i class="fa fa-font"></i> Change MP3 name</h2>
+			<input class="fullWidth" value="G-Eazy x Bebe Rexha - Me, Myself & I.mp3" placeholder="MP3 Name" type="text" id="customMP3Name" />
+			
+			<a onclick="toggle_visibility('editShow');" class="close">&times;</a>
+		
+		</div>
+		
+	</div>
+
+	<div class="link-popup" id="shareShow">
+	
+		<div class="popup">
+		
+			<h2>Spread the word</h2>
+			
+			<div class="socialButtons">
+			
+				<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/YouTubeInMP3com"><i class="fa fa-facebook-square fa-3x verticalAlign"></i></a>
+				<a target="_blank" href="https://twitter.com/intent/tweet?text=Simple way to extract audio and download MP3s from YouTube:&url=http://www.youtubeinmp3.com"><i class="fa fa-twitter-square fa-3x verticalAlign"></i></a>
+				<a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://www.youtubeinmp3.com&description=Simple way to extract audio and download MP3s from YouTube&media=http://www.youtubeinmp3.com/images/icon.png"><i class="fa fa-pinterest-square fa-3x verticalAlign"></i></a>
+				<a target="_blank" href="https://plus.google.com/share?url=http://www.youtubeinmp3.com"><i class="fa fa-google-plus-square fa-3x verticalAlign"></i></a>
+				<a target="_blank" href="http://www.tumblr.com/share?v=3&u=http://www.youtubeinmp3.com&s=Simple way to extract audio and download MP3s from YouTube"><i class="fa fa-tumblr-square fa-3x verticalAlign"></i></a> 
+				
+				
+			</div>
+			
+			<h2>Facebook</h2>
+			
+			<div class="facebookMargin">
+			
+				<div id="fb-root"></div>
+				<script>(function(d, s, id) {
+				  var js, fjs = d.getElementsByTagName(s)[0];
+				  if (d.getElementById(id)) return;
+				  js = d.createElement(s); js.id = id;
+				  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+				  fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));</script>
+				
+				<div class="fb-page" data-href="http://www.facebook.com/YouTubeInMP3com" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="http://www.facebook.com/YouTubeInMP3com"><a href="http://www.facebook.com/YouTubeInMP3com">YouTubeInMP3.com - Download MP3 Files From Youtube</a></blockquote></div></div>
+			
+			</div>
+			
+			<a onclick="toggle_visibility('shareShow');" class="close">&times;</a>
+			
+		</div>
+		
+	</div>
+	
+	<section class="video">
+		
+		<form id="form" action="" method="GET">
+		
+			<input id="video" type="search" name="video" placeholder="Paste A Link Or Search For A Video Title" />
+			
+			<!-- Small screen search results -->
+			<div id="searchResultMobile" class="searchResultMobile loader"></div>
+			
+			<button id="searchButton" onclick="search()" type="submit">Convert To MP3 <i class="fa fa-angle-double-right"></i></button>
+		
+			<!-- Large screen search results -->
+			<div id="searchResultLarge" class="searchResultLarge loader"></div>
+		
+		</form>
+		
+		<link rel="stylesheet" property="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/css/tooltipster.min.css">
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js"></script>
+		
+		<script src="/js/client.js?v=1.2.4.3" type="text/javascript"></script>
+		<script type="text/javascript" src="//apis.google.com/js/client.js?onload=init" onload="externalLoad()"></script>		
+				<link rel="stylesheet" property="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.0.2/nouislider.min.css">
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.0.2/nouislider.js"></script>
+		
+		<div class="embed loader">
+			
+			<div id="player"></div>
+			<div id="slider"></div>
+			
+		</div>
+				
+		<div class="infoBox">	
+			<h1 class="titleVideo"><img class="thumbnailTitle" alt="YouTube Thumbnail" src="//img.youtube.com/vi/bSfpSOBD30U/default.jpg"> G-Eazy x Bebe Rexha - Me, Myself & I</h1>
+						<p class="floatLeft"><i class="fa fa-clock-o"></i> Length: <span class="bold"> 5:49</span> &nbsp;  | <i class="fa fa-file"></i> Size: <span class="bold">5.34 MB</span>  | &nbsp; <a onclick="toggle_visibility('linkpopup');" id="linkto"> <i class="fa fa-link"></i> Link to this MP3</a> 				
+				| 
+				<a class="socialButton" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/YouTubeInMP3com"><i class="fa fa-facebook-square fa-2x verticalAlign"></i></a>
+				<a class="socialButton" target="_blank" href="https://twitter.com/intent/tweet?text=Simple way to extract audio and download MP3s from YouTube:&amp;url=http://www.youtubeinmp3.com"><i class="fa fa-twitter-square fa-2x verticalAlign"></i></a>
+				<a class="socialButton" target="_blank" href="http://pinterest.com/pin/create/button/?url=http://www.youtubeinmp3.com&amp;description=Simple way to extract audio and download MP3s from YouTube&media=http://www.youtubeinmp3.com/images/icon.png"><i class="fa fa-pinterest-square fa-2x verticalAlign"></i></a>
+				<a class="socialButton" target="_blank" href="https://plus.google.com/share?url=http://www.youtubeinmp3.com"><i class="fa fa-google-plus-square fa-2x verticalAlign"></i></a>
+				<a class="socialButton" target="_blank" href="http://www.tumblr.com/share?v=3&u=http://www.youtubeinmp3.com&amp;s=Simple way to extract audio and download MP3s from YouTube"><i class="fa fa-tumblr-square fa-2x verticalAlign"></i></a> 
+				
+				<script src="/js/social.js" type="text/javascript"></script>
+				
+			</p>	
+						
+						
+			<p class="download-buttons fullWidth">
+			
+								<a class="button fullWidth" id="download" href="/download/get/?i=68S8Mb9t444ySwjpvCZa44v2d7rZrrVxVuS5krD08y1CyNStIBRO5wmUUhGCJHOhhzbn5w5KjUTDX7y1xLrb8w%3D%3D"><i class="fa fa-download"></i> Download MP3</a>
+								<a onclick="toggle_visibility('editShow');" class="button button-gray"><i class="fa fa-cogs"></i> Settings</a><a rel="nofollow" href="http://www.youtubeinmp4.com/youtube.php?video=http://www.youtube.com/watch?v=bSfpSOBD30U" class="button button-gray"><i class="fa fa-television"></i> Download in MP4 format</a><a rel="nofollow" href="http://www.saveitoffline.com/go/?l=http://www.saveitoffline.com/#http://www.youtube.com/watch?v=bSfpSOBD30U" class="button button-gray"><i class="fa fa-file-o"></i> Other Formats</a>
+							</p>
+			
+			
+			<div id="contain-300" class="ad ad-300 loader"></div>
+			
+			<div class="floatRight">
+			
+				<div class="firstBlock">
+				
+					<h2 class="firstBlockHeader">How do I download my MP3?</h2>
+				
+					Your video has been prepared and is ready to be downloaded.<br />
+					To continue, simply press <strong>"Download MP3"</strong>.<br /><br />
+					
+					Your MP3 has been converted to the highest quality possible and ID3 tags have been automatically identified and added.<br />
+					You can customize your download by changing the <a class="green" onclick="toggle_visibility('editShow');">Options</a>.<br />
+					
+				</div>
+				
+				<div class="secondBlock">
+				
+					<h2 class="secondBlockHeader">How do I edit my MP3?</h2>
+					
+					You can edit your MP3 by clicking "Settings" (grey button, found above on the left side) button.<br>
+					There are two ways of editing an MP3 before downloading it:<br>
+					<br>
+					1) Specify the start and end time manually, in the Settings menu.<br>
+					2) Enable the video editor from the Settings menu and use the sliders to set the start and end time.			
+				</div>
+			
+			</div>			
+
+						
+		</div>
+		
+		<span class="messagePage" id="message"></span>
+		
+	</section>
+	
+	
+		<div id="contain-728" class="ad ad-728 loader"></div>
+
+	<script type="text/javascript">
+		var durationSeconds = 349;
+		var videoId = "bSfpSOBD30U";
+		var editMin = '';
+		var editMax = '';
+		var convert = 0;
+	</script>
+	<script src="/js/process.js?v=1.3.1" type="text/javascript"></script>
+	
+		<script type="text/javascript">
+		setTimeout(function () {
+		
+						
+			$("#download").click();
+		
+		}, 1500);
+	
+	</script>
+		
+		
+	<footer>
+		<p>Want to forbid downloading a file? <a href="/privacy/">Contact us</a>.<br>
+		By downloading content from this site, you agree with the <a href="/tos/">Terms of Service</a>.</p>
+	</footer>
+	
+
+		
+	<div class="loader" id="load-160">
+	
+
+		<!-- Conversant Media 120x600 and 160x600 SkyScraper CODE for YouTubeInMP3 -->
+		<script type="text/javascript">var vclk_options = {sid:80572,media_id:3,media_type:7,version:"1.4",secure:"on"};</script><script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=80572&media_id=3&media_type=7&version=1.4&exc=1"></script><noscript><a href="https://secure.fastclick.net/w/click.here?sid=80572&m=3&c=1" target="_blank"><img src="https://secure.fastclick.net/w/get.media?sid=80572&m=3&tp=7&d=s&c=1&vcm_acv=1.4" width="160" height="600" border="1"></a></noscript>
+		<!-- Conversant Media 120x600 and 160x600 SkyScraper CODE for YouTubeInMP3 -->
+		
+
+	</div>
+
+	<div class="loader" id="load-300">
+	
+
+		<!-- Conversant Media 300x250 Medium Rectangle CODE for YouTubeInMP3 -->
+		<script type="text/javascript">var vclk_options = {sid:80572,media_id:6,media_type:8,version:"1.4",secure:"on"};</script><script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=80572&media_id=6&media_type=8&version=1.4&exc=1"></script><noscript><a href="https://secure.fastclick.net/w/click.here?sid=80572&m=6&c=1" target="_blank"><img src="https://secure.fastclick.net/w/get.media?sid=80572&m=6&tp=8&d=s&c=1&vcm_acv=1.4" width="300" height="250" border="1"></a></noscript>
+		<!-- Conversant Media 300x250 Medium Rectangle CODE for YouTubeInMP3 -->
+		
+		
+	</div>	
+	
+	<div class="loader" id="load-728">
+	
+		<!-- Conversant Media 468x60 and 728x90 Banner CODE for YouTubeInMP3 -->
+		<script type="text/javascript">var vclk_options = {sid:80572,media_id:1,media_type:5,version:"1.4",secure:"on"};</script><script class="vclk_pub_code" type="text/javascript" src="https://secure.cdn.fastclick.net/js/adcodes/pubcode.min.js?sid=80572&media_id=1&media_type=5&version=1.4&exc=1"></script><noscript><a href="https://secure.fastclick.net/w/click.here?sid=80572&m=1&c=1" target="_blank"><img src="https://secure.fastclick.net/w/get.media?sid=80572&m=1&tp=5&d=s&c=1&vcm_acv=1.4" width="728" height="90" border="1"></a></noscript>
+		<!-- Conversant Media 468x60 and 728x90 Banner CODE for YouTubeInMP3 -->
+
+	</div>
+
+	<script type="text/javascript" src="/js/loader.js?v=1.2.3"></script>
+	<script data-cfasync="false" type="text/javascript" src="http://www.onclicktop.com/a/display.php?r=439235"></script>
+	
+		
+	<!-- Start of StatCounter Code for Default Guide -->
+	<script type="text/javascript">
+	var sc_project=8077308; 
+	var sc_invisible=1; 
+	var sc_security="6b707000"; 
+	var scJsHost = (("https:" == document.location.protocol) ?
+	"https://secure." : "http://www.");
+	document.write("<sc"+"ript type='text/javascript' src='" +
+	scJsHost+
+	"statcounter.com/counter/counter.js'></"+"script>");
+	</script>
+	<!-- End of StatCounter Code for Default Guide -->
+	
+</body>
+</html>
