@@ -9,7 +9,8 @@ class Mp3(object):
     def __init__(self, output_directory):
         self.output_directory = output_directory
 
-    def retrieve_song_link(self, youtube_link):
+    @staticmethod
+    def retrieve_song_link(youtube_link):
 
         payload = {
             'format': 'JSON',
@@ -32,11 +33,11 @@ class Mp3(object):
 
         if resp.status_code == 200:
             song_output = self.output_directory + song_title + '.mp3'
-            with open(song_output, 'wb') as file:
+            with open(song_output, 'wb') as output_file:
                 for content in resp.iter_content(chunk_size=2048):
-                    file.write(content)
+                    output_file.write(content)
 
 
     def __call__(self, youtube_link):
-        self.download_music_stream(self.retrieve_song_link(youtube_link))
+        self.download_music_stream(Mp3.retrieve_song_link(youtube_link))
 
