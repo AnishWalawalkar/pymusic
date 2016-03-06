@@ -1,98 +1,75 @@
+'''module to work with the youtubetomp3 api'''
+
 import requests
-from threading import Thread
-import time
 
-YOUTUBE_API_KEY = 'AIzaSyDd9I_b3Orr9IOGdrWSHFJn1RmKj6mWp_I'
-YOUTUBE_URL = 'https://www.googleapis.com/youtube/v3/search'
-MP3_URL = 'http://www.youtubeinmp3.com/fetch/'
+class Youtube(object):
 
+    api_url = 'https://www.googleapis.com/youtube/v3/search'
+    watch_url = 'http://www.youtube.com/watch?v={}'
 
-def youtube_song_url(song):
-    '''return youtube video id'''
+    def __init__(self, api_key):
+        self.api_key = api_key
 
-    payload = {
-        'key': YOUTUBE_API_KEY,
-        'part': 'snippet',
-        'type': 'video',
-        'order': 'relevance',
-        'q': song
-    }
+    def retrieve_video_link(self, song):
+        payload = {
+            'key': self.api_key,
+            'part': 'snippet',
+            'type': 'video',
+            'order': 'relevance',
+            'q': ' '.join(song.values()),
+            'maxResults': 10
+        }
 
-    req = requests.get(YOUTUBE_URL, params=payload)
+        resp = requests.get(Youtube.api_url, params=payload)
 
-    if req.status_code == 200:
-        return 'http://www.youtube.com/watch?v={}'.format(req.json()['items'][0]['id']['videoId'])
+        if resp.status_code == 200:
+            data_dict = resp.json()
+            video_id = data_dict.get(
+                'items', [])[0].get('id', {}).get('videoId', None)
+            if video_id is not None:
+                return Youtube.watch_url.format(video_id)
 
-    return None
+        return None
 
-def mp3_url(youtube_song_url):
-
-    payload = {
-        'format': 'JSON',
-        'video': youtube_song_url
-    }
-
-    req = requests.get(MP3_URL, params=payload)
-
-    if req.status_code == 200:
-        return req.json()['link']
-
-    return None
-
-def download_song(url, song_name):
-    req = requests.get(url, stream=True)
-
-    with open('songs/'+song_name, 'wb') as output_file:
-        for content in req.iter_content(chunk_size=2048):
-            if content:
-                output_file.write(content)
-
-def performer(song):
-    youtube_watch_url = youtube_song_url(song)
-    if youtube_watch_url is not None:
-        mp3 = mp3_url(youtube_watch_url)
-        if mp3 is not None:
-            download_song(mp3, song+'.mp3')
-
-def main():
-    songs = [
-        'cake by the ocean',
-        'paradise',
-        'my house',
-        'I know what you did last summer',
-        'me, myself & I',
-        'when the beat drops out',
-        'work',
-        'pillowtalk',
-        'lush life',
-        'hide away',
-        'stay',
-        'all my friends',
-        'faded',
-        'middle',
-        'running out',
-        'lay it all on me',
-        '7 years',
-        'I took a pill in ibiza',
-        'youth',
-        'never forget you',
-        'bang my head',
-        'sorry',
-        'hollow'
-    ]
-
-    threads = []
-
-    for song_name in songs:
-        threads.append(Thread(target=performer, args=(song_name,)))
-
-    start_time = time.time()
-
-    _ = [thread.start() for thread in threads]
-    _ = [thread.join() for thread in threads]
-
-    print('Time take to download songs: {}'.format(time.time()-start_time))
+    def __call__(self, song):
+        return self.retrieve_video_link(song)
 
 
-if __name__ == '__main__':
-    main()
+class Mp3(object):
+
+    api_url = 'http://www.youtubeinmp3.com/fetch/'
+
+    def __init__(self, output_directory):
+        self.output_directory = output_directory
+
+    @staticmethod
+    def retrieve_song_link(youtube_link):
+
+        payload = {
+            'format': 'JSON',
+            'video': youtube_link
+        }
+
+        resp = requests.get(Mp3.api_url, params=payload)
+
+        if resp.status_code == 200:
+            return resp.json()
+
+
+    def download_music_stream(self, song_dict):
+        song_link = song_dict.get('link', None)
+        song_title = song_dict.get('title', 'Unknown')
+        if song_link is None:
+            return
+
+        resp = requests.get(song_link, stream=True)
+
+        if resp.status_code == 200:
+            song_output = self.output_directory + song_title + '.mp3'
+            with open(song_output, 'wb') as output_file:
+                for content in resp.iter_content(chunk_size=2048):
+                    output_file.write(content)
+
+
+    def __call__(self, youtube_link):
+        self.download_music_stream(Mp3.retrieve_song_link(youtube_link))
