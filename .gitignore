@@ -8,4 +8,5 @@ dist
 slacker.egg-info
 .tox
 
-pymusic/songs
+#directories
+songs/
