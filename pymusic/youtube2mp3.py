@@ -1,14 +1,15 @@
 '''module to work with the youtubetomp3 api'''
 
 import requests
+import os
 
-class Youtube(object):
+class Youtube:
 
     api_url = 'https://www.googleapis.com/youtube/v3/search'
     watch_url = 'http://www.youtube.com/watch?v={}'
 
-    def __init__(self, api_key):
-        self.api_key = api_key
+    def __init__(self):
+        self.api_key = os.environ.get('YOUTUBE_API_KEY')
 
     def retrieve_video_link(self, song):
         payload = {
@@ -16,7 +17,7 @@ class Youtube(object):
             'part': 'snippet',
             'type': 'video',
             'order': 'relevance',
-            'q': ' '.join(song.values()),
+            'q': ' '.join(song),
             'maxResults': 10
         }
 
@@ -35,19 +36,19 @@ class Youtube(object):
         return self.retrieve_video_link(song)
 
 
-class Mp3(object):
+class Mp3:
 
     api_url = 'http://www.youtubeinmp3.com/fetch/'
 
-    def __init__(self, output_directory):
+    def __init__(self, youtube_link, output_directory=os.getcwd()):
         self.output_directory = output_directory
+        self.youtube_link = youtube_link
 
-    @staticmethod
-    def retrieve_song_link(youtube_link):
+    def retrieve_song_link(self):
 
         payload = {
             'format': 'JSON',
-            'video': youtube_link
+            'video': self.youtube_link
         }
 
         resp = requests.get(Mp3.api_url, params=payload)
@@ -66,10 +67,11 @@ class Mp3(object):
 
         if resp.status_code == 200:
             song_output = self.output_directory + song_title + '.mp3'
+            song_output = song_output.replace(' ', '_')
             with open(song_output, 'wb') as output_file:
                 for content in resp.iter_content(chunk_size=2048):
                     output_file.write(content)
 
 
-    def __call__(self, youtube_link):
-        self.download_music_stream(Mp3.retrieve_song_link(youtube_link))
+    def __call__(self):
+        self.download_music_stream(self.retrieve_song_link())
